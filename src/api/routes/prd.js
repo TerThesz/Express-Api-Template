@@ -1,7 +1,8 @@
-var router = new (require('express')).Router;
-const { error } = require('../helpers');
+const router = new (require('express')).Router;
+const { userValidation } = require('../validations');
+const { validationMiddleware } = require('../middlewares');
 
-router.all('/', (req, res, next) => {
+router.all('/', validationMiddleware(userValidation), (req, res, next) => {
   error(res, 401)
 });
 

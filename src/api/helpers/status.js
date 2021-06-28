@@ -1,13 +1,13 @@
 const errorCodes = require('../../config/codes');
 
 module.exports = new class Status {
-  error = (res, status = 500, ..._errors) => {
+  error = (res, status = 500, _errors) => {
     let errors = [];
     _errors.map(_error => {
-      let [ _section, _status ] = _error.split('.');
+      let [ _section, _status, ..._args ] = _error.split('.');
       _status = parseInt(_status);
 
-      let _message = errorCodes[_section][_status];
+      let _message = errorCodes[_section][_status](..._args);
 
       errors.push({
         code: _status,
@@ -18,8 +18,8 @@ module.exports = new class Status {
 
     res.status(status).json({
       status,
-      message: errorCodes.statusCodes[500][0],
-      detail: errorCodes.statusCodes[status][1],
+      message: errorCodes.statusCodes[status]()[0],
+      detail: errorCodes.statusCodes[status]()[1],
       errors
     })
   }
