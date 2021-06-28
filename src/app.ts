@@ -37,14 +37,14 @@ app.use(fileUpload());
 app.use(device.capture({ parseUserAgent: true }));
 
 // load all routes
-const files = sync(resolve('./src/api/routes/**/*.js'));
+const files = sync(resolve('./src/api/routes/**/*.ts'));
 console.log('');
 files.forEach((file: string) => {
     const _file = require(file);
     if (_file) {
         try {
-            app.use(file.replace(__dirname.replaceAll('\\', '/') + '/api/routes', '').replace('.js', ''), _file);
-            console.log(`Loaded \x1b[36m${file.replace(__dirname.replaceAll('\\', '/') + '/api/routes', '')} \x1b[0mas \x1b[36m${file.replace(__dirname.replaceAll('\\', '/') + '/api/routes', '').replace('.js', '')}\x1b[0m`);
+            app.use(file.replace(__dirname.replaceAll('\\', '/') + '/api/routes', '').replace('.ts', ''), _file);
+            console.log(`Loaded \x1b[36m${file.replace(__dirname.replaceAll('\\', '/') + '/api/routes', '')} \x1b[0mas \x1b[36m${file.replace(__dirname.replaceAll('\\', '/') + '/api/routes', '').replace('.ts', '')}\x1b[0m`);
         } catch { };
     }
 });
