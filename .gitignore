@@ -19,4 +19,4 @@ dist
 !.yarn/versions
 .pnp.*
 
-yarn-error.log 
+yarn-error.log
