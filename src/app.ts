@@ -36,8 +36,7 @@ app.use(morgan('\x1b[34m:method \x1b[0m:url \x1b[33m:status \x1b[0m:res[content-
 app.use(fileUpload());
 app.use(device.capture({ parseUserAgent: true }));
 
-// DO NOT LOOK AT THIS CODE
-
+// Router handler
 const files = sync(resolve('./src/api/routes/**/*.ts'));
 console.log('');
 files.forEach((file: string) => {
