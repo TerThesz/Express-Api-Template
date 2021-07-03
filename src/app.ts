@@ -8,11 +8,11 @@ const
   bodyParser   =  require('body-parser'),
   path         =  require('path'),
   morgan       =  require('morgan'),
-  { sync }     =  require('glob'),
-  { resolve }  =  require('path'),
   fileUpload   =  require("express-fileupload"),
   device       =  require('express-device'),
-  cors         =  require('cors');
+  cors         =  require('cors'),
+  { sync }     =  require('glob'),
+  { resolve }  =  require('path');
 
 require('dotenv').config();
 
@@ -36,7 +36,8 @@ app.use(morgan('\x1b[34m:method \x1b[0m:url \x1b[33m:status \x1b[0m:res[content-
 app.use(fileUpload());
 app.use(device.capture({ parseUserAgent: true }));
 
-// load all routes
+// DO NOT LOOK AT THIS CODE
+
 const files = sync(resolve('./src/api/routes/**/*.ts'));
 console.log('');
 files.forEach((file: string) => {

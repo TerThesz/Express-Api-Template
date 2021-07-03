@@ -11,10 +11,4 @@ RUN yarn install --only=production
 
 COPY . .
 
-RUN yarn run build
-
-EXPOSE 3000
-
-WORKDIR ./build
-
 CMD node app.js 
