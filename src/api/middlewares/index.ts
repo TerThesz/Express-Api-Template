@@ -1,3 +1,3 @@
 module.exports = {
-  validationMiddleware: require('./validation_middleware')
+  validationMiddleware: require('./validation-middleware')
 }
