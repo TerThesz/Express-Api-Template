@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from  'express';
 const errorCodes = require('../../config/codes');
 
 export = new class Status {
-  error = (res: Response, status: number = 500, errors: Array<string>) => {
+  error = (res: Response, status: number = 500, errors: Array<string> = []) => {
     let additionalErrors: any[] = [];
     errors.map((error: any) => {
       let [ section, status, ...args ] = error.split('.');
