@@ -1,4 +1,4 @@
-import yup from 'yup';
+import * as yup from 'yup';
 
 export = yup.object({
   // To Do add other errors
