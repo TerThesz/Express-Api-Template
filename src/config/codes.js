@@ -1,5 +1,5 @@
 module.exports = {
-  statusCodes: new class Status {
+  sc: new class StatusCodes {
     200 = () =>  [ 'OK', 'indicates that the request has succeeded.' ]
     201 = () =>  [ 'Created', 'indicates that the request has been fulfilled and has resulted in one or more new resources being created.' ]
     202 = () =>  [ 'Accepted', 'indicates that the request has been accepted for processing, but the processing has not been completed.' ]
@@ -21,7 +21,12 @@ module.exports = {
     507 = () =>  [ 'Insufficient Storage', 'means the method could not be performed on the resource because the server is unable to store the representation needed to successfully complete the request.' ]
   },
 
-  userCodes: new class User {
-    800 = (field) => [ `Required Field`, `${field} is required.` ]
+  gc: new class GeneralCodes {
+    600 = (field) => [ `Required Field`, `${field} is required.` ]
+    601 = (field, type = 'string') => [ 'Invalid Type', `${field} has invalid type. Expected type: ${type}.` ]
+    602 = (field, min) => [ 'Too Short', `${field} is too short. Minimal length: ${min} characters.` ]
+    603 = (field, max) => [ 'Too Long', `${field} is too long. Maximal length: ${max} characters.` ]
+    604 = (field, length) => [ 'Invalid Length', `${field} has invalid length. Expected length: ${length} characters.` ]
+    605 = (field) => [ 'Invalid Email', `${field} is not a valid email address.` ]
   }
 }
