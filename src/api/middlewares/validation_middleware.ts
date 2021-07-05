@@ -6,6 +6,12 @@ export = (schema: any, validateBody: boolean = false) => async (req: Request, re
     await schema.validate(req.body, { abortEarly: false });
     next();
   } catch (err) {
+    err.errors.forEach((error: string) => {
+      const [ section, status, ...args ] = error.split('.');
+      if (!section || !status) err.errors[err.errors.indexOf(error)] = 'defaultValidationError.0.' + error;
+    });
+
+    console.log(err.errors)
     error(res, 400, err.errors);
   }
 }
