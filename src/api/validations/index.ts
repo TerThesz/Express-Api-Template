@@ -1,3 +1,3 @@
-module.exports = {
-  userValidation: require('./user_validation')
-}
+import userValidation from './user_validation';
+
+export { userValidation };

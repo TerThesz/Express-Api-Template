@@ -1,4 +1,3 @@
-module.exports = {
-  error: require('./status').error,
-  success: require('./status').success
-}
+const { error, success } = require('./status');
+
+export { error, success }

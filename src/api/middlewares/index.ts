@@ -1,3 +1,3 @@
-module.exports = {
-  validationMiddleware: require('./validation-middleware')
-}
+import validationMiddleware from './validation_middleware';
+
+export { validationMiddleware }

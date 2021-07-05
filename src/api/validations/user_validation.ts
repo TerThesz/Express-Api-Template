@@ -1,6 +1,6 @@
-const yup = require('yup');
+import yup from 'yup';
 
-module.exports = yup.object({
+export = yup.object({
   // To Do add other errors
   name: yup.string().required("userCodes.800.name"),
   password: yup.string().min(8).max(20).required("userCodes.800.password"),

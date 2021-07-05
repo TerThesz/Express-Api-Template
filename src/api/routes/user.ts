@@ -1,7 +1,8 @@
-const router = new (require('express')).Router;
-const { userValidation } = require('../validations');
-const { validationMiddleware } = require('../middlewares');
-const { userController } = require('../controllers');
+var router = new (require('express')).Router;
+
+import { userValidation } from '../validations';
+import { validationMiddleware } from '../middlewares';
+import { userController } from '../controllers';
 
 router.all('/', validationMiddleware(userValidation), userController);
 

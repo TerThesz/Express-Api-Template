@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from  'express';
 const errorCodes = require('../../config/codes');
 
-module.exports = new class Status {
+export = new class Status {
   error = (res: Response, status: number = 500, _errors: Array<string>) => {
     let errors: any[] = [];
     _errors.map((_error: any) => {
