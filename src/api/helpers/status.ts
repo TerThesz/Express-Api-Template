@@ -11,13 +11,21 @@ export = new class Status {
 
       status = status === '0' ? 400 : parseInt(status);
 
-      let message = section === 'defaultValidationError' ? args : errorCodes[section][status](...args);
-
-      additionalErrors.push({
-        code: status,
-        message: message[0],
-        detail: message[1]
-      })
+      try {
+        let message = section === 'ce' ? args : errorCodes[section][status](...args);
+      
+        additionalErrors.push({
+          code: status,
+          message: message[0],
+          detail: message[1]
+        })
+      } catch(err) {
+        additionalErrors.push({
+          code: 400,
+          message: error,
+          detail: ''
+        })
+      }
     });
 
     res.status(status).json({
@@ -28,5 +36,5 @@ export = new class Status {
     })
   }
 
-  success = (res: Response) => res.status(200).json({status: 200, message: errorCodes.statusCodes[200][0], detail: errorCodes.statusCodes[200][1]});
+  success = (res: Response) => res.status(200).json({status: 200, message: errorCodes.sc[200][0], detail: errorCodes.sc[200][1]});
 }

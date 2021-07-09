@@ -1,8 +1,7 @@
 import * as yup from 'yup';
 
 export = yup.object({
-  // To Do add other errors
-  name: yup.string().required("userCodes.800.name"),
-  password: yup.string().min(8).max(20).required("userCodes.800.password"),
-  email: yup.string().email().required("userCodes.800.email")
+  name: yup.string().strict().required(),
+  password: yup.string().strict().min(8).max(20).required(),
+  email: yup.string().strict().email().required()
 });
