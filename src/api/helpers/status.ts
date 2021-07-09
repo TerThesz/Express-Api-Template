@@ -2,26 +2,29 @@ import { Request, Response, NextFunction } from  'express';
 const errorCodes = require('../../config/codes');
 
 export = new class Status {
-  error = (res: Response, status: number = 500, _errors: Array<string>) => {
-    let errors: any[] = [];
-    _errors.map((_error: any) => {
-      let [ _section, _status, ..._args ] = _error.split('.');
-      _status = parseInt(_status);
+  error = (res: Response, status: number = 500, errors: any = []) => {
+    if (typeof errors === 'string') errors = [ errors ];
 
-      let _message = errorCodes[_section][_status](..._args);
+    let additionalErrors: any[] = [];
+    errors.map((error: any) => {
+      let [ section, status, ...args ] = error.split('.');
 
-      errors.push({
-        code: _status,
-        message: _message[0],
-        detail: _message[1]
+      status = status === '0' ? 400 : parseInt(status);
+
+      let message = section === 'defaultValidationError' ? args : errorCodes[section][status](...args);
+
+      additionalErrors.push({
+        code: status,
+        message: message[0],
+        detail: message[1]
       })
     });
 
     res.status(status).json({
       status,
-      message: errorCodes.statusCodes[status]()[0],
-      detail: errorCodes.statusCodes[status]()[1],
-      errors
+      message: errorCodes.sc[status]()[0],
+      detail: errorCodes.sc[status]()[1],
+      additionalErrors
     })
   }
 
