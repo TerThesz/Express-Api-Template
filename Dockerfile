@@ -11,4 +11,8 @@ RUN yarn install --only=production
 
 COPY . .
 
-CMD node app.js 
+RUN yarn build
+
+WORKDIR ./dist
+
+CMD node app.js
