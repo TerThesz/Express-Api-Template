@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -L -e ts,js --exec ts-node src/app.ts",
-    "build": "tsc --project ./"
+    "start": "DEV=true nodemon -L -e ts,js --exec ts-node src/app.ts",
+    "build": "yarn clean && tsc --project ./ && yarn copy",
+    "clean": "rm -rf ./dist",
+    "copy": "mkdir ./dist/config/ && cp ./src/config/* ./dist/config/ && cp .env ./dist"
   },
   "keywords": [],
   "author": "",
