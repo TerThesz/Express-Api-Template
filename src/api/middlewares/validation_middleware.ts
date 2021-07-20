@@ -2,8 +2,10 @@ import { Request, Response, NextFunction } from  'express';
 const { error } = require('../helpers');
 
 export = (schema: any, validateBody: boolean = false) => async (req: Request, res: Response, next: NextFunction) => {
+  const content = validateBody ? req.body : req.query;
+  
   try {
-    await schema.validate(req.body, { abortEarly: false });
+    await schema.validate(content, { abortEarly: false });
     next();
   } catch (err) {
     err.errors.forEach((error: string) => {
