@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from  'express';
-const { error } = require('../helpers');
+import { error } from '../helpers';
 
-export = (schema: any, validateBody: boolean = false) => async (req: Request, res: Response, next: NextFunction) => {
+export = (schema: any, validateBody: boolean = false) => async (req: Request, res: Response, next: Function) => {
   const content = validateBody ? req.body : req.query;
   
   try {

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "repository": "https://github.com/TerThesz/express-api-template",
   "scripts": {
     "start": "DEV=true nodemon -L -e ts,js --exec ts-node src/app.ts",
     "build": "yarn clean && tsc --project ./ && yarn copy",
