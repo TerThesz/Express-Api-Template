@@ -8,7 +8,7 @@ export = (schema: any, validateBody: boolean = false) => async (req: Request, re
     await schema.validate(content, { abortEarly: false });
     next();
   } catch (err) {
-    if (!err.errors.length) throw err;
+    if (!err.errors?.length) throw err;
     
     err.errors.forEach((error: string) => {
       const [ section, status, ...args ] = error.split('.');
