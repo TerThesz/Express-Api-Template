@@ -12,6 +12,7 @@ module.exports = {
     401 = () =>  [ 'Unauthorized', 'indicates that the request has not been applied because it lacks valid authentication credentials for the target resource.' ]
     403 = () =>  [ 'Forbidden', 'indicates that the server understood the request but refuses to authorize it.' ]
     404 = () =>  [ 'Not Found', 'indicates that the origin server did not find a current representation for the target resource or is not willing to disclose that one exists.' ]
+    405 = () =>  [ 'Method Not Allowed', 'indicates that the request method is known by the server but is not supported by the target resource.' ]
     411 = () =>  [ 'Length Required', 'indicates that the server refuses to accept the request without a defined Content-Length.' ]
     413 = () =>  [ 'Payload Too Large', 'indicates that the server is refusing to process a request because the request payload is larger than the server is willing or able to process.' ]
     415 = () =>  [ 'Unsupported Media Type', 'indicates that the origin server is refusing to service the request because the payload is in a format not supported by the target resource for this method.' ]
@@ -24,6 +25,5 @@ module.exports = {
   ac: new class AuthCodes {
     600 = () => [ 'Invalid AppId', 'The specified appid is not valid.' ]
     601 = () => [ 'Insufficient Permissions', 'You can not access this route with this appid.' ]
-    602 = () => [ 'Invalid Passcode', 'The specified passcode is not valid.' ]
   }
 }
