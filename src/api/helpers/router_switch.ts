@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from  'express';
 import { validationMiddleware } from '../middlewares';
 import { error } from '../helpers';
 
-export = (...switches: [ [ { [key: string]: Function }, { [key: string]: Function } | undefined ] ]) => async (req: Request, res: Response, next: NextFunction) => {
+export = (...switches: [ [ { [key: string]: Function }, { [key: string]: object } | undefined ] ]) => async (req: Request, res: Response, next: NextFunction) => {
   const method = req.method.toLocaleLowerCase();
   const switchObject = switches.find(_switch => _switch[0][method]);
   
